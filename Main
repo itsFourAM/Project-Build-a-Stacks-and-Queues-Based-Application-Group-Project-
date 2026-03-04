@@ -2,9 +2,9 @@
 #include <limits>
 #include <string>
 
-#include "Stacks.h"
-#include "Queues.h"
-#include "Patients.h"
+#include "Stack.h"
+#include "Queue.h"
+#include "Patient.h"
 
 using std::cin;
 using std::cout;
