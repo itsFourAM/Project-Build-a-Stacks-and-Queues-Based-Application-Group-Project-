@@ -65,9 +65,7 @@ int main() {
         cout << "4. Dequeue patient from Queue\n";
         cout << "5. Display Stack\n";
         cout << "6. Display Queue\n";
-        cout << "7. Traverse Stack with Iterator\n";//shows working iterator
-        cout << "8. Traverse Queue with Iterator\n";//shows working iterator
-        cout << "9. Exit\n";
+        cout << "7. Exit\n";
 
         choice = readInt("Enter choice: ");
 
@@ -99,25 +97,13 @@ int main() {
             queue.display();
         }
         else if (choice == 7) {
-            cout << "Traversing Stack using Iterator:\n";
-            Iterator it = stack.iterator();
-            if (!it.hasNext()) cout << "  <empty>\n";
-            while (it.hasNext()) {
-                cout << "  " << it.next() << "\n";
-            }
-        }
-        else if (choice == 8) {
-            //Queue iterator
-            }
-        }
-        else if (choice == 9) {
             cout << "Exiting...\n";
         }
         else {
             cout << "Invalid choice!\n";
         }
 
-    } while (choice != 9);
+    } while (choice != 7);
 
     return 0;
 }
