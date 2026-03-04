@@ -1,11 +1,10 @@
-//Mainprac
 #include <iostream>
 #include <limits>
 #include <string>
 
-#include "Stack.h"
-#include "Queue.h"
-#include "Patient.h"
+#include "Stacks.h"
+#include "Queues.h"
+#include "Patients.h"
 
 using std::cin;
 using std::cout;
@@ -37,8 +36,7 @@ static string readLine(const string& prompt) {
 }
 
 static Patient readPatientFromUser() {
-    // If a previous >> left a newline, getline might read empty; this is safe:
-    // (We already ignore newline after readInt, but keeping input clean is good.)
+ 
     string name = readLine("Enter patient name: ");
     while (name.empty()) {
         cout << "Name cannot be empty. Try again.\n";
@@ -55,7 +53,7 @@ int main() {
     Stack stack;
     Queue queue;
 
-    int choice, val;
+    int choice;
 
     do {
         cout << "\n===== Patient Record System (Stack & Queue) =====\n";
@@ -65,7 +63,9 @@ int main() {
         cout << "4. Dequeue patient from Queue\n";
         cout << "5. Display Stack\n";
         cout << "6. Display Queue\n";
-        cout << "7. Exit\n";
+        cout << "7. Traverse Stack with Iterator\n";
+        cout << "8. Traverse Queue with Iterator\n";
+        cout << "9. Exit\n";
 
         choice = readInt("Enter choice: ");
 
@@ -83,35 +83,48 @@ int main() {
             }
         } 
         else if (choice == 3) {
-        	Patient p = readPatientFromUser();
+            Patient p = readPatientFromUser();
             queue.enqueue(p);
             cout << "Enqueued to Queue: " << p << "\n";
-                
         } 
         else if (choice == 4) {
-        	Patient removed;
+            Patient removed;
             if (queue.dequeue(removed)) {
                 cout << "Dequeued from Queue: " << removed << "\n";
             } else {
                 cout << "Queue is empty!\n";
             }
-          // queue.dequeue();
-            }
-         
-        	else if (choice == 5) {
+        } 
+        else if (choice == 5) {
             stack.display();
         } 
-        	else if (choice == 6) {
+        else if (choice == 6) {
             queue.display();
         }
-        	else if (choice == 7) {
+        else if (choice == 7) {
+            cout << "Traversing Stack using Iterator:\n";
+            Iterator it = stack.iterator();
+            if (!it.hasNext()) cout << "  <empty>\n";
+            while (it.hasNext()) {
+                cout << "  " << it.next() << "\n";
+            }
+        }
+        else if (choice == 8) {
+            cout << "Traversing Queue using Iterator:\n";
+            Iterator it = queue.iterator();
+            if (!it.hasNext()) cout << "  <empty>\n";
+            while (it.hasNext()) {
+                cout << "  " << it.next() << "\n";
+            }
+        }
+        else if (choice == 9) {
             cout << "Exiting...\n";
         }
-        	else {
+        else {
             cout << "Invalid choice!\n";
         }
 
-    } 	while (choice != 7);
+    } while (choice != 9);
 
     return 0;
 }
