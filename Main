@@ -83,27 +83,35 @@ int main() {
             }
         } 
         else if (choice == 3) {
-			cin >> val;
-                queue.enqueue(val);
+        	Patient p = readPatientFromUser();
+            queue.enqueue(p);
+            cout << "Enqueued to Queue: " << p << "\n";
+                
         } 
         else if (choice == 4) {
-           queue.dequeue();
+        	Patient removed;
+            if (queue.dequeue(removed)) {
+                cout << "Dequeued from Queue: " << removed << "\n";
+            } else {
+                cout << "Queue is empty!\n";
             }
-        } 
-        else if (choice == 5) {
+          // queue.dequeue();
+            }
+         
+        	else if (choice == 5) {
             stack.display();
         } 
-        else if (choice == 6) {
+        	else if (choice == 6) {
             queue.display();
         }
-        else if (choice == 7) {
+        	else if (choice == 7) {
             cout << "Exiting...\n";
         }
-        else {
+        	else {
             cout << "Invalid choice!\n";
         }
 
-    } while (choice != 7);
+    } 	while (choice != 7);
 
     return 0;
 }
