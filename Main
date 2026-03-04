@@ -1,0 +1,122 @@
+//Mainprac
+#include <iostream>
+#include <limits>
+#include <string>
+
+#include "Stack.h"
+#include "Queue.h"
+#include "Patient.h"
+
+using std::cin;
+using std::cout;
+using std::string;
+
+static void clearBadInput() {
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+static int readInt(const string& prompt) {
+    int x;
+    while (true) {
+        cout << prompt;
+        if (cin >> x) {
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            return x;
+        }
+        cout << "Invalid number. Try again.\n";
+        clearBadInput();
+    }
+}
+
+static string readLine(const string& prompt) {
+    cout << prompt;
+    string s;
+    std::getline(cin, s);
+    return s;
+}
+
+static Patient readPatientFromUser() {
+    // If a previous >> left a newline, getline might read empty; this is safe:
+    // (We already ignore newline after readInt, but keeping input clean is good.)
+    string name = readLine("Enter patient name: ");
+    while (name.empty()) {
+        cout << "Name cannot be empty. Try again.\n";
+        name = readLine("Enter patient name: ");
+    }
+
+    int id  = readInt("Enter patient ID #: ");
+    int age = readInt("Enter patient age: ");
+
+    return Patient(name, id, age);
+}
+
+int main() {
+    Stack stack;
+    Queue queue;
+
+    int choice;
+
+    do {
+        cout << "\n===== Patient Record System (Stack & Queue) =====\n";
+        cout << "1. Push patient to Stack\n";
+        cout << "2. Pop patient from Stack\n";
+        cout << "3. Enqueue patient to Queue\n";
+        cout << "4. Dequeue patient from Queue\n";
+        cout << "5. Display Stack\n";
+        cout << "6. Display Queue\n";
+        cout << "7. Traverse Stack with Iterator\n";//shows working iterator
+        cout << "8. Traverse Queue with Iterator\n";//shows working iterator
+        cout << "9. Exit\n";
+
+        choice = readInt("Enter choice: ");
+
+        if (choice == 1) {
+            Patient p = readPatientFromUser();
+            stack.push(p);
+            cout << "Pushed to Stack: " << p << "\n";
+        } 
+        else if (choice == 2) {
+            Patient removed;
+            if (stack.pop(removed)) {
+                cout << "Popped from Stack: " << removed << "\n";
+            } else {
+                cout << "Stack is empty!\n";
+            }
+        } 
+        else if (choice == 3) {
+			//enqueue
+        } 
+        else if (choice == 4) {
+           //dequeue
+            }
+        } 
+        else if (choice == 5) {
+            stack.display();
+        } 
+        else if (choice == 6) {
+            //Display Q
+        }
+        else if (choice == 7) {
+            cout << "Traversing Stack using Iterator:\n";
+            Iterator it = stack.iterator();
+            if (!it.hasNext()) cout << "  <empty>\n";
+            while (it.hasNext()) {
+                cout << "  " << it.next() << "\n";
+            }
+        }
+        else if (choice == 8) {
+            //Queue iterator
+            }
+        }
+        else if (choice == 9) {
+            cout << "Exiting...\n";
+        }
+        else {
+            cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 9);
+
+    return 0;
+}
