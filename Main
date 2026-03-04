@@ -55,7 +55,7 @@ int main() {
     Stack stack;
     Queue queue;
 
-    int choice;
+    int choice, val;
 
     do {
         cout << "\n===== Patient Record System (Stack & Queue) =====\n";
@@ -85,17 +85,18 @@ int main() {
             }
         } 
         else if (choice == 3) {
-			//enqueue
+			cin >> val;
+                queue.enqueue(val);
         } 
         else if (choice == 4) {
-           //dequeue
+           queue.dequeue();
             }
         } 
         else if (choice == 5) {
             stack.display();
         } 
         else if (choice == 6) {
-            //Display Q
+            queue.display();
         }
         else if (choice == 7) {
             cout << "Traversing Stack using Iterator:\n";
